@@ -6,17 +6,7 @@ import styles from "./LoginForm.module.css";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
-
 import { loginSuccessAddToken, loginSuccessAddUsername } from "../../../Store/Slices/UserSlice";
-import {
-  changeStartTimestamp,
-  changeStepsInStore,
-  changeCoordinatesInStore,
-  changeNotificationsInStore,
-  changeHeartbeatInStore
-} from "../../../Store/Slices/ChangebleLifeDataSlice";
-
-import { refreshToken } from "./authService";
 
 export function LoginForm() {
   const [login, setLogin] = useState("");
@@ -32,88 +22,6 @@ export function LoginForm() {
     const saved = localStorage.getItem("accessToken");
     if (saved) dispatch(loginSuccessAddToken(saved));
   }, [dispatch]);
-
-  useEffect(() => {
-    if (token) {
-      fetchAllMetrics(token);
-    }
-  }, [token]);
-
-  const fetchWithRefresh = async (url, currentToken) => {
-    let res = await fetch(url, {
-      headers: { Authorization: `Bearer ${currentToken}` },
-    });
-    if (res.status === 401) {
-      const refreshed = await refreshToken(dispatch);
-      if (refreshed) {
-        res = await fetch(url, {
-          headers: { Authorization: `Bearer ${refreshed}` },
-        });
-      }
-    }
-    if (!res.ok) {
-      throw new Error(`Ошибка при запросе ${url}, статус ${res.status}`);
-    }
-    return res.json();
-  };
-
-  const fetchAllMetrics = async (currentToken) => {
-    const stop = new Date().toISOString();
-    const start = new Date(Date.now() - 3 * 24 * 60 * 60 * 1000).toISOString();
-
-    try {
-      // Steps
-      {
-        const url = `/api/proxy?start=${start}&stop=${stop}&metricType=steps`;
-        const raw = await fetchWithRefresh(url, currentToken);
-        const data = raw.map(({ timestamp, value }) => ({
-          timestamp,
-          value: Number(value),
-        }));
-        console.log("📊 Шаги с таймштампами:", data);
-        if (data.length > 0) {
-          dispatch(changeStartTimestamp(data[0].timestamp));
-        }
-        dispatch(changeStepsInStore(data));
-      }
-
-      // Coordinates
-      {
-        const url = `/api/proxy?start=${start}&stop=${stop}&metricType=coordinates`;
-        const raw = await fetchWithRefresh(url, currentToken);
-        const data = raw.map(({ timestamp, value }) => {
-          const [lat, lng] = value.split(":").map(Number);
-          return { timestamp, coords: [lat, lng] };
-        });
-        console.log("📍 Координаты с таймштампами:", data);
-        dispatch(changeCoordinatesInStore(data));
-      }
-
-      // Notifications
-      {
-        const url = `/api/proxy?start=${start}&stop=${stop}&metricType=notification`;
-        const raw = await fetchWithRefresh(url, currentToken);
-        const data = raw.map(({ timestamp, value }) => ({ timestamp, value }));
-        console.log("🔔 Уведомления с таймштампами: ", data);
-        dispatch(changeNotificationsInStore(data));
-      }
-
-      // Heartbeat
-      {
-        const url = `/api/proxy?start=${start}&stop=${stop}&metricType=heartbeat`;
-        const raw = await fetchWithRefresh(url, currentToken);
-        const data = raw.map(({ timestamp, value }) => ({
-          timestamp,
-          value: parseFloat(value),
-        }));
-        console.log("❤️ Пульс с таймштампами:", data);
-        dispatch(changeHeartbeatInStore(data));
-      }
-
-    } catch (err) {
-      console.error("❌ Ошибка при загрузке метрик:", err.message);
-    }
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
