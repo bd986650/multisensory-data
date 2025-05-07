@@ -18,7 +18,7 @@ export function InformationBlockProfile() {
   };
 
   const handleSupport = () => {
-    alert('СБЕР 89134840662');
+    navigate('/sber');
   };
 
   return (
