@@ -5,9 +5,17 @@ import money from '../../../Images/Money.svg';
 import help from '../../../Images/Help.svg'; 
 import exit from '../../../Images/Exit.svg';
 import { useSelector } from "react-redux";
+import { useNavigate } from 'react-router-dom';
 
 export function InformationBlockProfile() {
   const nickName = useSelector((state) => state.user.user);
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem('accessToken');
+    localStorage.removeItem('refreshToken');
+    navigate('/');
+  };
 
   return (
     <div className={`${styles.informationBlock} ${styles.informationBlockPosition}`}>
@@ -15,9 +23,9 @@ export function InformationBlockProfile() {
         <img alt='' src={imageAvatar} className={styles.imageAvatar}/>
       </div>
       <div className={styles.nickName}>{nickName}</div>
-      <ButtonInformationBlock text={'поддержать'} image={money}/>
+      <ButtonInformationBlock text={'поддержать'} image={money} onClick={() => navigate('/support')}/>
       <ButtonInformationBlock text={'помощь'} image={help}/>
-      <ButtonInformationBlock text={'выход'} image={exit}/>
+      <ButtonInformationBlock text={'выход'} image={exit} onClick={handleLogout}/>
     </div>
   );
 }

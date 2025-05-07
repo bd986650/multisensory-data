@@ -1,6 +1,7 @@
 import { ButtonMenu } from '../ButtonMenu/ButtonMenu';
 import { Logo } from '../Logo/Logo';
 import { Profile } from '../Profile/Profile';
+import { LogoutButton } from '../../LogoutButton/LogoutButton';
 import styles from './Header.module.css'
 
 export function Header() {
@@ -8,10 +9,10 @@ export function Header() {
     <div className={styles.header}>
       <div className={styles.leftPartHeader}>
         <Logo/>
-        {/* <ButtonMenu text={'меню'}/>
-        <ButtonMenu text={'меню'}/> */}
+        <ButtonMenu text={'Поддержать'} link={'/support'}/>
       </div>
       <div className={styles.rightPartHeader}>
+        <LogoutButton />
         <Profile/>
       </div>
     </div>
