@@ -1,25 +1,18 @@
 import styles from "./Profile.module.css";
 import accountImage from "../../../Images/AccountCircle.png";
-import OutsideClickHandler from "react-outside-click-handler";
-import { useState } from "react";
-import { InformationBlockProfile } from "../InformationBlockProfile/InformationBlockProfile";
+import { useDispatch } from 'react-redux';
+import { logout } from '../../../Store/Slices/UserSlice';
 
 export function Profile() {
-  const [focusProfile, setFocusProfile] = useState(false);
+  const dispatch = useDispatch();
 
-  const handleClickProfile = () => {
-    setFocusProfile(true);
+  const handleLogout = () => {
+    dispatch(logout());
   };
 
-  const outsideClick = () => {
-    setFocusProfile(false);
-  }
   return (
-    <OutsideClickHandler onOutsideClick={outsideClick}>
-      <div className={styles.profile} onClick={handleClickProfile}>
+      <div className={styles.profile} onClick={handleLogout}>
         <img alt="" src={accountImage} className={styles.accountImage} />
       </div>
-      {focusProfile && <InformationBlockProfile/>}
-    </OutsideClickHandler>
   );
 }
