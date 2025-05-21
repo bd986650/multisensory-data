@@ -13,7 +13,7 @@ export default async function handler(req, res) {
   
     req.on('end', async () => {
       try {
-        const response = await fetch('https://51.250.108.190:8080/api/auth/login', {
+        const response = await fetch('http://51.250.108.190:8080/api/auth/login', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
