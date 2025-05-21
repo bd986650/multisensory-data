@@ -7,7 +7,7 @@ const refreshToken = async (dispatch) => {
     return null;
   }
 
-  const url = "http://51.250.108.190:8080/api/auth/refresh";
+  const url = "https://51.250.108.190:8080/api/auth/refresh";
 
   try {
     const response = await fetch(url, {

@@ -18,7 +18,7 @@ export default async function handler(req, res) {
         console.log('Request body:', bodyData);
   
         // Отправка запроса на внешний API для регистрации
-        const response = await fetch('http://51.250.108.190:8080/api/auth/register', {
+        const response = await fetch('https://51.250.108.190:8080/api/auth/register', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded', // Устанавливаем Content-Type

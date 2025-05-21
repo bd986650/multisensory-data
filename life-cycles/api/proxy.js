@@ -10,7 +10,7 @@ export default async function handler(req, res) {
   }
 
   // Формируем целевой URL с параметрами
-  const targetUrl = `http://51.250.108.190:8080/api/users/get?start=${encodeURIComponent(start)}&stop=${encodeURIComponent(stop)}&metricType=${encodeURIComponent(metricType)}`;
+  const targetUrl = `https://51.250.108.190:8080/api/users/get?start=${encodeURIComponent(start)}&stop=${encodeURIComponent(stop)}&metricType=${encodeURIComponent(metricType)}`;
 
   try {
     const response = await fetch(targetUrl, {
