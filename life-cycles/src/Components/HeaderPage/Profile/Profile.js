@@ -1,5 +1,5 @@
 import styles from "./Profile.module.css";
-import accountImage from "../../../Images/AccountCircle.png";
+// import accountImage from "../../../Images/AccountCircle.png"; // Иконка больше не используется
 import { useDispatch } from 'react-redux';
 import { logout } from '../../../Store/Slices/UserSlice';
 import { useNavigate } from 'react-router-dom';
@@ -15,7 +15,7 @@ export function Profile() {
 
   return (
       <div className={styles.profile} onClick={handleLogout}>
-        <img alt="" src={accountImage} className={styles.accountImage} />
+        <span className={styles.logoutText}>Выйти</span>
       </div>
   );
 }
