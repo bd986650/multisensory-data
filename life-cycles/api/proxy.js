@@ -9,6 +9,11 @@ export default async function handler(req, res) {
     return res.status(400).json({ message: 'Missing required query parameters' });
   }
 
+  const authHeader = req.headers.authorization;
+  if (!authHeader) {
+    return res.status(401).json({ message: 'No authorization header' });
+  }
+
   // Формируем целевой URL с параметрами
   const targetUrl = `http://51.250.108.190:8080/api/users/get?start=${encodeURIComponent(start)}&stop=${encodeURIComponent(stop)}&metricType=${encodeURIComponent(metricType)}`;
 
@@ -16,11 +21,14 @@ export default async function handler(req, res) {
     const response = await fetch(targetUrl, {
       method: 'GET',
       headers: {
-        Authorization: req.headers.authorization || '',
+        Authorization: authHeader,
       },
     });
 
     if (!response.ok) {
+      if (response.status === 401) {
+        return res.status(401).json({ message: 'Unauthorized' });
+      }
       return res.status(response.status).json({ message: 'Error from backend' });
     }
 
