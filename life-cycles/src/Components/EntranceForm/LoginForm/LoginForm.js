@@ -172,7 +172,7 @@ export function LoginForm() {
 
   return (
     <form className={styles.container} onSubmit={handleSubmit}>
-      <FieldForInput signField="" type="text" login={login} setLogin={setLogin} />
+      <FieldForInput signField="Логин" type="text" login={login} setLogin={setLogin} />
       <FieldForInputPassword
         signField="Пароль"
         password={password}

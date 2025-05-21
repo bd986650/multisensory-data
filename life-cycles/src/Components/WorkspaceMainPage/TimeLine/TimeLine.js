@@ -32,12 +32,6 @@ export function Timeline({ onTimeChange }) {
     }
   }, [allEvents, startTimestamp]);
 
-  const formatTimeMinutesWithSeconds = (seconds) => {
-    const m = Math.floor(seconds / 60);
-    const sec = seconds % 60;
-    return `${m} мин ${sec < 10 ? "0" + sec : sec} сек`;
-  };
-
   const formatReadableDate = (isoString) => {
     const date = new Date(isoString);
     const day = date.getDate();
@@ -60,22 +54,10 @@ export function Timeline({ onTimeChange }) {
   };
 
   const currentTimestamp = allEvents[currentIndex]?.timestamp;
-  const secondsPassed = currentTimestamp && startTimestamp
-    ? Math.floor((new Date(currentTimestamp).getTime() - new Date(startTimestamp).getTime()) / 1000)
-    : 0;
 
   return (
     <div className={styles.container}>
       <h2>Таймлайн</h2>
-      <div className={styles.timeline}>
-        {allEvents.map((item, idx) => (
-          <div key={idx} className={styles.year}>
-            {idx % Math.ceil(allEvents.length / 10) === 0 && formatTimeMinutesWithSeconds(
-              Math.floor((new Date(item.timestamp).getTime() - new Date(allEvents[0].timestamp).getTime()) / 1000)
-            )}
-          </div>
-        ))}
-      </div>
       <Slider
         className={styles.slider}
         min={0}
@@ -89,9 +71,6 @@ export function Timeline({ onTimeChange }) {
           <div key={key} {...props} className={styles.thumb} />
         )}
       />
-      <p className={styles.selectedTime}>
-        Прошло: {formatTimeMinutesWithSeconds(secondsPassed)}
-      </p>
       {currentTimestamp && (
         <p className={styles.realTime}>
           Реальное время: {formatReadableDate(currentTimestamp)}
