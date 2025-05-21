@@ -1,10 +1,11 @@
 .header {
   height: 55px;
   width: 100%;
-  background-color: rgba(114, 29, 217, 0.477);
-
+  background-color: #e5e5e5;
   display: flex;
   align-items: center;
+  box-shadow: none;
+  border-radius: 0;
 }
 
 .leftPartHeader {
@@ -17,6 +18,5 @@
   display: flex;
   align-items: center;
   justify-content: center;
-
   width: 10%;
 }
