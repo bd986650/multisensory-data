@@ -6,11 +6,15 @@ export function InformationBlock() {
   const stepsData = useSelector(state => state.changebleLifeData.steps);
   const notificationsData = useSelector(state => state.changebleLifeData.notifications);
   const heartbeatData = useSelector(state => state.changebleLifeData.heartbeat);
+  const caloriesData = useSelector(state => state.changebleLifeData.calories);
+  const activeMinutesData = useSelector(state => state.changebleLifeData.activeMinutes);
   const currentTimestamp = useSelector(state => state.time.time);
 
   const [currentSteps, setCurrentSteps] = useState("Нет данных");
   const [currentNotif, setCurrentNotif] = useState("Нет данных");
   const [currentBeat, setCurrentBeat] = useState("Нет данных");
+  const [currentCalories, setCurrentCalories] = useState("Нет данных");
+  const [currentActiveMinutes, setCurrentActiveMinutes] = useState("Нет данных");
 
   // Функция для поиска последнего значения по времени
   const findLatestBeforeTimestamp = (arr, timestamp) => {
@@ -35,11 +39,15 @@ export function InformationBlock() {
     const currentStepData = findLatestBeforeTimestamp(stepsData, currentTimestamp);
     const currentNotifData = findLatestBeforeTimestamp(notificationsData, currentTimestamp);
     const currentBeatData = findLatestBeforeTimestamp(heartbeatData, currentTimestamp);
+    const currentCaloriesData = findLatestBeforeTimestamp(caloriesData, currentTimestamp);
+    const currentActiveMinutesData = findLatestBeforeTimestamp(activeMinutesData, currentTimestamp);
 
     setCurrentSteps(currentStepData ? currentStepData.value : "Нет данных");
     setCurrentNotif(currentNotifData ? extractMessage(currentNotifData.value) : "Нет данных");
     setCurrentBeat(currentBeatData ? currentBeatData.value : "Нет данных");
-  }, [currentTimestamp, stepsData, notificationsData, heartbeatData]);
+    setCurrentCalories(currentCaloriesData ? currentCaloriesData.value : "Нет данных");
+    setCurrentActiveMinutes(currentActiveMinutesData ? currentActiveMinutesData.value : "Нет данных");
+  }, [currentTimestamp, stepsData, notificationsData, heartbeatData, caloriesData, activeMinutesData]);
 
   // Форматирование числовых значений
   const formatValue = (value) => {
@@ -73,6 +81,22 @@ export function InformationBlock() {
           <p className={styles.cardTitle}>💓 Пульс</p>
           <p className={styles.cardValue}>
             {typeof currentBeat === "number" ? `${currentBeat} уд/мин` : currentBeat}
+          </p>
+        </div>
+
+        {/* Карточка с калориями */}
+        <div className={styles.card}>
+          <p className={styles.cardTitle}>🔥 Калории</p>
+          <p className={styles.cardValue}>
+            {typeof currentCalories === "number" ? `${currentCalories} ккал` : currentCalories}
+          </p>
+        </div>
+
+        {/* Карточка с активными минутами */}
+        <div className={styles.card}>
+          <p className={styles.cardTitle}>⏱️ Активные минуты</p>
+          <p className={styles.cardValue}>
+            {typeof currentActiveMinutes === "number" ? `${currentActiveMinutes} мин` : currentActiveMinutes}
           </p>
         </div>
 

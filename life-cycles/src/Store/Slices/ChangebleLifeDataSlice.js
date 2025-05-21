@@ -7,7 +7,9 @@ const initialState = {
   path: null,
   notifications: null,
   coordinates: null,
-  startTimestamp: null, 
+  startTimestamp: null,
+  calories: null,
+  activeMinutes: null,
 };
 
 const changebleLifeDataSlice = createSlice({
@@ -35,6 +37,12 @@ const changebleLifeDataSlice = createSlice({
     changeCoordinatesInStore(state, action) {
       state.coordinates = action.payload;
     },
+    changeCaloriesInStore(state, action) {
+      state.calories = action.payload;
+    },
+    changeActiveMinutesInStore(state, action) {
+      state.activeMinutes = action.payload;
+    },
   },
 });
 
@@ -46,6 +54,8 @@ export const {
   changePathInStore,
   changeNotificationsInStore,
   changeCoordinatesInStore,
+  changeCaloriesInStore,
+  changeActiveMinutesInStore,
 } = changebleLifeDataSlice.actions;
 
 export default changebleLifeDataSlice.reducer;

@@ -6,7 +6,9 @@ import {
   changeStepsInStore,
   changeCoordinatesInStore,
   changeNotificationsInStore,
-  changeHeartbeatInStore
+  changeHeartbeatInStore,
+  changeCaloriesInStore,
+  changeActiveMinutesInStore
 } from '../../../../Store/Slices/ChangebleLifeDataSlice';
 import { refreshToken } from "../../../EntranceForm/LoginForm/authService";
 
@@ -94,6 +96,30 @@ export function ButtonRequestData() {
         }));
         console.log("❤️ Пульс с таймштампами:", data);
         dispatch(changeHeartbeatInStore(data));
+      }
+
+      // Калории
+      {
+        const url = `/api/proxy?start=${start}&stop=${stop}&metricType=calories`;
+        const raw = await fetchWithRefresh(url, token);
+        const data = raw.map(({ timestamp, value }) => ({
+          timestamp,
+          value: Number(value),
+        }));
+        console.log("🔥 Калории с таймштампами:", data);
+        dispatch(changeCaloriesInStore(data));
+      }
+
+      // Активные минуты
+      {
+        const url = `/api/proxy?start=${start}&stop=${stop}&metricType=active_minutes`;
+        const raw = await fetchWithRefresh(url, token);
+        const data = raw.map(({ timestamp, value }) => ({
+          timestamp,
+          value: Number(value),
+        }));
+        console.log("⏱️ Активные минуты с таймштампами:", data);
+        dispatch(changeActiveMinutesInStore(data));
       }
 
     } catch (err) {
