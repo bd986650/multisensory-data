@@ -3,18 +3,20 @@
 
   height: 45px;
   width: 45px;
-  border-radius: 50%;
+  border-radius: 0;
 
-  background-color: rgba(114, 29, 217, 0.477);
+  background-color: #bdbdbd;
 
   cursor: pointer;
+  border: 1px solid #222;
 }
 
 .accountImage {
   height: 45px;
   width: 45px;
+  filter: grayscale(100%);
 }
 
 .profile:hover {
-  background-color: rgba(115, 0, 255, 0.55);
+  background-color: #c5c5c5;
 }

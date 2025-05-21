@@ -2,6 +2,9 @@
   width: 80%;
   margin: 20px auto;
   text-align: center;
+  background: #d3d3d3;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
 .timeline {
@@ -16,6 +19,7 @@
   font-size: 12px;
   z-index: 1;
   margin-bottom: 20px; /* Увеличим отступ снизу для текста */
+  color: #222;
 }
 
 .year::before {
@@ -36,16 +40,16 @@
 }
 
 .track {
-  background: #ddd;
+  background: #bdbdbd;
   height: 8px;
-  border-radius: 4px;
+  border-radius: 0;
 }
 
 .thumb {
-  background: #4caf50;
+  background: #222;
   width: 20px;
   height: 20px;
-  border-radius: 50%;
+  border-radius: 0;
   border: 2px solid #fff;
 }
 
@@ -53,9 +57,11 @@
   font-size: 18px;
   font-weight: bold;
   margin-top: 40px;
+  color: #222;
 }
 
 .data {
   margin-top: 20px;
   font-size: 16px;
+  color: #222;
 }

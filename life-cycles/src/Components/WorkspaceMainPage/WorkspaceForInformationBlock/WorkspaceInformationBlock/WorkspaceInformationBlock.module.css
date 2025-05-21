@@ -3,8 +3,9 @@
   height: 800px;
 
   display: flex;
-  border-radius: 30px;
+  border-radius: 0;
   margin: 10px;
 
-  background-color: rgba(192, 158, 224, 0.773);
+  background-color: #d3d3d3;
+  border: 1px solid #bdbdbd;
 }

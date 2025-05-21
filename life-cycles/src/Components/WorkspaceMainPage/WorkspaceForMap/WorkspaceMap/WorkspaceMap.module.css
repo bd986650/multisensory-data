@@ -4,8 +4,9 @@
 
   margin: 10px;
   border-radius: 0;
-  padding: 10px;
-  background-color: rgba(192, 158, 224, 0.773);
+  padding: 0;
+  background-color: #d3d3d3;
+  border: 1px solid #bdbdbd;
 
   display: flex;
   flex-direction: column;
