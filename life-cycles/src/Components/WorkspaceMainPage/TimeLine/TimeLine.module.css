@@ -7,6 +7,10 @@
   box-sizing: border-box;
 }
 
+.realTime {
+  padding-top: 10px;
+}
+
 .timeline {
   display: flex;
   justify-content: space-between;
