@@ -13,5 +13,3 @@ root.render(
     </React.StrictMode>
   </Provider>
 );
-
-// 1. 데이터 가져오기
