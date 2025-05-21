@@ -2,6 +2,10 @@
 
 .container {
   padding: 20px;
+  background: #f5f5f5;
+  border: 1px solid #bdbdbd;
+  border-radius: 0;
+  box-shadow: none;
 }
 
 .headerDataContainer {
@@ -18,17 +22,18 @@
 }
 
 .card {
-  flex: 1 1 100px; /* Минимальная ширина карточки */
-  background-color: #f7f7f7;
-  border-radius: 12px;
+  flex: 1 1 100px;
+  background: #fff;
+  border: 1px solid #bdbdbd;
+  border-radius: 0;
+  box-shadow: none;
   padding: 15px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   min-height: 50px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  max-width: 300px; /* Устанавливаем максимальную ширину карточки */
-  overflow: hidden; /* Чтобы длинный текст не выходил за пределы */
+  max-width: 300px;
+  overflow: hidden;
 }
 
 .cardTitle {
@@ -41,8 +46,8 @@
   font-size: 1.2rem;
   font-weight: 500;
   color: #333;
-  white-space: normal; /* ← разрешаем перенос текста */
-  word-break: break-word; /* ← ломаем длинные слова если нужно */
+  white-space: normal;
+  word-break: break-word;
 }
 
 
