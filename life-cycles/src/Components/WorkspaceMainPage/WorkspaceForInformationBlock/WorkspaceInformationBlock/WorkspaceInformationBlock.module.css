@@ -3,9 +3,9 @@
   height: 800px;
 
   display: flex;
-  border-radius: 0;
+  border-radius: 15px;
   margin: 10px;
 
   background-color: #d3d3d3;
-  border: 15px solid #bdbdbd;
+  border: 1px solid #bdbdbd;
 }

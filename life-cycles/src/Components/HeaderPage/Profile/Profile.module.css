@@ -3,11 +3,12 @@
 
   height: 45px;
   /* width: 45px; */ /* Ширина будет определяться содержимым */
+  border-radius: 0;
 
   background-color: #f5f5f5;
 
   cursor: pointer;
-  border: 10px solid #bdbdbd;
+  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;

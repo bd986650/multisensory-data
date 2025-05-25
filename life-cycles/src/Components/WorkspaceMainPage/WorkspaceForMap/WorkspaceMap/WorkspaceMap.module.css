@@ -3,9 +3,10 @@
   height: 800px;
 
   margin: 10px;
+  border-radius: 15px;
   padding: 0;
   background-color: #f5f5f5;
-  border: 15px solid #bdbdbd;
+  border: 1px solid #bdbdbd;
 
   display: flex;
   flex-direction: column;
