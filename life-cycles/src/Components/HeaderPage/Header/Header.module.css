@@ -17,9 +17,6 @@
 .leftPartHeader {
   display: flex;
   align-items: center;
-  padding: 10px;
-  border-radius: 15px;
-  background-color: #d3d3d3;
 }
 
 .rightPartHeader {

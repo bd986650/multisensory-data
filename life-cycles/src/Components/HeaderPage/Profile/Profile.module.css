@@ -5,10 +5,10 @@
   /* width: 45px; */ /* Ширина будет определяться содержимым */
   border-radius: 0;
 
-  background-color: #bdbdbd;
+  background-color: #d3d3d3;
 
   cursor: pointer;
-  border: 1px solid #222;
+  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
