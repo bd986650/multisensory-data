@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import styles from './InformationBlock.module.css';
+import { BehaviorModel } from '../BehaviorModel/BehaviorModel';
 
 export function InformationBlock() {
   const stepsData = useSelector(state => state.changebleLifeData.steps);
@@ -67,6 +68,7 @@ export function InformationBlock() {
   return (
     <div className={styles.container}>
       <div className={styles.headerDataContainer}>Информация</div>
+      <BehaviorModel />
       <div className={styles.cardsWrapper}>
         {/* Карточка с шагами */}
         <div className={styles.card}>
