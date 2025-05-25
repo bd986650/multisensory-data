@@ -1,6 +1,6 @@
 .headerOuter {
   width: 100%;
-  background-color: #e5e5e5; /* Цвет фона страницы */
+  background-color: #ffffff; /* Цвет фона страницы */
   display: flex;
   justify-content: center; /* Центрируем внутренний контейнер */
 }
@@ -17,10 +17,12 @@
 .leftPartHeader {
   display: flex;
   align-items: center;
+  background-color: #C1C1C1;
 }
 
 .rightPartHeader {
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: #C1C1C1;
 }
