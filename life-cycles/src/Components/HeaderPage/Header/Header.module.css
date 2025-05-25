@@ -1,24 +1,28 @@
-.header {
+.headerOuter {
+  width: 100%;
+  background-color: #e5e5e5; /* Цвет фона страницы */
+  display: flex;
+  justify-content: center; /* Центрируем внутренний контейнер */
+}
+
+.headerInner {
   height: 55px;
-  width: 1340px;
-  max-width: 100%;
-  margin: 0 auto;
-  background-color: #e5e5e5;
+  width: 1340px; /* Ширина, соответствующая контенту */
+  max-width: 100%; /* Не позволяем выходить за пределы экрана */
   display: flex;
   align-items: center;
-  box-shadow: none;
-  border-radius: 0;
+  justify-content: space-between; /* Распределяем элементы по краям */
 }
 
 .leftPartHeader {
   display: flex;
   align-items: center;
-  width: 90%;
+  /* width: 90%; */ /* Убираем фиксированную ширину */
 }
 
 .rightPartHeader {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 10%;
+  /* width: 10%; */ /* Убираем фиксированную ширину */
 }
