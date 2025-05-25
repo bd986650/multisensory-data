@@ -32,7 +32,7 @@ export function BehaviorModel() {
       <div className={styles.header}>Модель поведения</div>
       <div className={styles.date}>{formattedDate}</div>
       <div className={styles.status}>
-        {isSleeping ? 'Сон' : 'Бодрствование'}
+        {isSleeping ? 'В состоянии покоя' : 'В активном состоянии'}
       </div>
     </div>
   );
