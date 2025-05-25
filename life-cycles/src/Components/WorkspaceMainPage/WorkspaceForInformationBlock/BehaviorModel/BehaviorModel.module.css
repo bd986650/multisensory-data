@@ -27,4 +27,21 @@
   background-color: #f0f7ff;
   border-radius: 5px;
   text-align: center;
+  margin-bottom: 15px;
+}
+
+.details {
+  font-size: 1rem;
+  color: #666;
+  background-color: #f8f8f8;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.details > div {
+  margin-bottom: 5px;
+}
+
+.details > div:last-child {
+  margin-bottom: 0;
 } 
