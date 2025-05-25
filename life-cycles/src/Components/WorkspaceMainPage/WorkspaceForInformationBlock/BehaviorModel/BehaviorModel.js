@@ -38,13 +38,17 @@ export function BehaviorModel() {
     (currentCoords[0] !== prevCoords[0] || currentCoords[1] !== prevCoords[1]);
 
   // Определяем состояние
-  const isSleeping = currentHeartbeat < 70 && 
+  const isSleeping = (currentHeartbeat < 70 && 
                     (!currentSteps || currentSteps === 0) && 
-                    !isMoving;
+                    !isMoving) || (!currentHeartbeat && 
+                      (!currentSteps || currentSteps === 0) && 
+                      !isMoving);
 
-  const isWalking = currentHeartbeat >= 70 && 
-                   currentSteps > 0 && 
-                   isMoving;
+  const isWalking = (currentHeartbeat >= 70 && 
+                   (currentSteps > 0 || 
+                   isMoving)) || (!currentHeartbeat && 
+                    (currentSteps > 0 || 
+                    isMoving));
 
   // Форматируем дату
   const formattedDate = new Date(currentTimestamp).toLocaleDateString('ru-RU', {
@@ -69,11 +73,6 @@ export function BehaviorModel() {
       <div className={styles.date}>{formattedDate}</div>
       <div className={styles.status}>
         {status}
-      </div>
-      <div className={styles.details}>
-        <div>Пульс: {currentHeartbeat ? `${currentHeartbeat} уд/мин` : 'Нет данных'}</div>
-        <div>Шаги: {currentSteps || 0}</div>
-        <div>Движение: {isMoving ? 'Да' : 'Нет'}</div>
       </div>
     </div>
   );
