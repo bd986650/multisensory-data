@@ -7,22 +7,20 @@
 
 .headerInner {
   height: 55px;
-  width: 1340px; /* Ширина, соответствующая контенту */
-  max-width: 100%; /* Не позволяем выходить за пределы экрана */
+  width: 1340px;
+  max-width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-between; /* Распределяем элементы по краям */
+  justify-content: space-between;
 }
 
 .leftPartHeader {
   display: flex;
   align-items: center;
-  /* width: 90%; */ /* Убираем фиксированную ширину */
 }
 
 .rightPartHeader {
   display: flex;
   align-items: center;
   justify-content: center;
-  /* width: 10%; */ /* Убираем фиксированную ширину */
 }
