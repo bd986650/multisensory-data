@@ -7,11 +7,31 @@ export function BehaviorModel() {
   const coordinates = useSelector((state) => state.changebleLifeData.coordinates);
   const steps = useSelector((state) => state.changebleLifeData.steps);
 
+  // Функция для поиска последнего значения по времени
+  const findLatestBeforeTimestamp = (arr, timestamp) => {
+    if (!Array.isArray(arr) || arr.length === 0) return null;
+
+    const targetTime = new Date(timestamp).getTime();
+    const filtered = arr.filter(item => new Date(item.timestamp).getTime() <= targetTime);
+
+    if (filtered.length > 0) {
+      return filtered.reduce((latest, item) =>
+        new Date(item.timestamp).getTime() > new Date(latest.timestamp).getTime() ? item : latest
+      );
+    }
+    return null;
+  };
+
   // Находим текущие значения
-  const currentHeartbeat = heartbeat?.find(h => h.timestamp === currentTimestamp)?.value;
-  const currentSteps = steps?.find(s => s.timestamp === currentTimestamp)?.value;
-  const currentCoords = coordinates?.find(c => c.timestamp === currentTimestamp)?.coords;
-  const prevCoords = coordinates?.find(c => new Date(c.timestamp) < new Date(currentTimestamp))?.coords;
+  const currentHeartbeatData = findLatestBeforeTimestamp(heartbeat, currentTimestamp);
+  const currentStepsData = findLatestBeforeTimestamp(steps, currentTimestamp);
+  const currentCoordsData = findLatestBeforeTimestamp(coordinates, currentTimestamp);
+  const prevCoordsData = coordinates?.find(c => new Date(c.timestamp) < new Date(currentTimestamp));
+
+  const currentHeartbeat = currentHeartbeatData?.value;
+  const currentSteps = currentStepsData?.value;
+  const currentCoords = currentCoordsData?.coords;
+  const prevCoords = prevCoordsData?.coords;
 
   // Определяем, движется ли пользователь
   const isMoving = currentCoords && prevCoords && 
@@ -51,7 +71,7 @@ export function BehaviorModel() {
         {status}
       </div>
       <div className={styles.details}>
-        <div>Пульс: {currentHeartbeat || 'Нет данных'} уд/мин</div>
+        <div>Пульс: {currentHeartbeat ? `${currentHeartbeat} уд/мин` : 'Нет данных'}</div>
         <div>Шаги: {currentSteps || 0}</div>
         <div>Движение: {isMoving ? 'Да' : 'Нет'}</div>
       </div>
