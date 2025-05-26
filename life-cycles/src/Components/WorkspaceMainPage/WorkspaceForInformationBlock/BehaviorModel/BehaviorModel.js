@@ -38,13 +38,13 @@ export function BehaviorModel() {
     (currentCoords[0] !== prevCoords[0] || currentCoords[1] !== prevCoords[1]);
 
   // Определяем состояние
-  const isSleeping = (currentHeartbeat < 70 && 
+  const isSleeping = (currentHeartbeat < 55 && 
                     (!currentSteps || currentSteps === 0) && 
                     !isMoving) || (!currentHeartbeat && 
                       (!currentSteps || currentSteps === 0) && 
                       !isMoving);
 
-  const isWalking = (currentHeartbeat >= 70 && 
+  const isWalking = (currentHeartbeat >= 55 && 
                    (currentSteps > 0 || 
                    isMoving)) || (!currentHeartbeat && 
                     (currentSteps > 0 || 
